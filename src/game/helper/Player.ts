@@ -1,17 +1,17 @@
-import { Scene } from "phaser";
+import { GameScene } from '../scenes/Game';
 import { PlayerMovementIdleState } from "./PlayerMovementStates";
 import { PlayerJumpingIdleState, PlayerJumpingActiveState } from "./PlayerJumpingStates";
 
 export class Player 
 {
-    scene: Scene;
-    sid: any;
+    scene: GameScene;
+    sid: string;
     player_data: any;
     movement_state: any;
     jumping_state: any;
-    color: any;
-    respawn_x: any;
-    respawn_y: any;
+    color: string;
+    respawn_x: integer;
+    respawn_y: integer;
 
     /**
      * Initializes an instance of the Player class and immediately renders it on the provided scene at the
@@ -23,7 +23,7 @@ export class Player
      * @param pos_y: The Y coordinate at which the player should be rendered at
      * @param color: The player's color, used to add the correct sprites
      */
-    constructor(scene: Scene, sid: any, pos_x: integer, pos_y: integer, color: any) {
+    constructor(scene: GameScene, sid: string, pos_x: integer, pos_y: integer, color: string) {
         this.scene = scene;
         this.sid = sid;
         this.player_data = null;
@@ -41,7 +41,7 @@ export class Player
      * @param pos_x: The X coordinate at which the player should be rendered at
      * @param pos_y: The Y coordinate at which the player should be rendered at
      */
-    render(pos_x: any, pos_y: any) {
+    render(pos_x: integer, pos_y: integer) {
         // Set respawn position as the render coordinates
         this.respawn_x = pos_x;
         this.respawn_y = pos_y;

@@ -1,4 +1,4 @@
-import { Scene } from 'phaser';
+import { GameScene } from '../scenes/Game';
 import { BoostPlatformFactory } from './BoostPlatformFactory';
 import { BrokenPlatformFactory } from './BrokenPlatformFactory';
 import { NaturalPlatformFactory } from './NaturalPlatformFactory';
@@ -9,7 +9,7 @@ import { NaturalPlatformFactory } from './NaturalPlatformFactory';
  */
 export class PlatformManager 
 {
-    scene: Scene;
+    scene: GameScene;
     plats: any[];
 
     /**
@@ -19,7 +19,7 @@ export class PlatformManager
      * @param scene: The game scene that is used for platform creation
      * @param platforms_data: The type and coordinates of the platforms used to render the scene
      */
-    constructor(scene: Scene, platforms_data: any[]) {
+    constructor(scene: GameScene, platforms_data: any[]) {
         this.scene = scene;
         this.scene.platforms = this.scene.physics.add.staticGroup();
         this.plats = [];
@@ -44,7 +44,7 @@ export class PlatformManager
      * @param platform_data: The type and coordinate of a single platform used to render the scene
      * @returns {*}: If rendered successfully, returns the sprite object of the newly rendered platform
      */
-    createPlatform(scene: Scene, platform_data: any) {
+    createPlatform(scene: GameScene, platform_data: any) {
         switch(platform_data['type']) {
             case 'natural':
                return new NaturalPlatformFactory(scene, platform_data);

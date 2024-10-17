@@ -1,4 +1,4 @@
-import { Scene } from "phaser";
+import { GameScene } from "../scenes/Game";
 
 export const player_jumping_states = {
     IDLE: 'idle',
@@ -24,7 +24,7 @@ export class PlayerJumpingIdleState
      * @param pos_x: The player's current X coordinate position
      * @param pos_y: The player's current Y coordinate position
      */
-    constructor(player_data: any, scene: Scene, pos_x: integer, pos_y: integer) {
+    constructor(player_data: any, scene: GameScene, pos_x: integer, pos_y: integer) {
         this.player_data = player_data;
         this.state_name = player_jumping_states.IDLE;
         this.velocity_y = 0;
@@ -40,10 +40,10 @@ export class PlayerJumpingIdleState
      * @param scene: The scene to detect conditions that change state
      * @returns {null}
      */
-    update(scene: Scene) {
+    update(scene: GameScene) {
         let state = null;
 
-        if (this.player_data.body.touching.down && scene.cursors.space.isDown) {
+        if (this.player_data.body.touching.down && scene.cursors?.space.isDown) {
             state = new PlayerJumpingActiveState(this.player_data, scene, -PLAYER_Y_VELOCITY, this.player_data.x, this.player_data.y);
         }
 
@@ -67,7 +67,7 @@ export class PlayerJumpingActiveState
      * @param pos_x: The player's current X coordinate position
      * @param pos_y: The player's current Y coordinate position
      */
-    constructor(player_data: any, scene: Scene, velocity_y: any, pos_x: integer, pos_y: integer) {
+    constructor(player_data: any, scene: GameScene, velocity_y: any, pos_x: integer, pos_y: integer) {
         this.player_data = player_data;
         this.state_name = player_jumping_states.ACTIVE;
         this.velocity_y = velocity_y;
@@ -83,7 +83,7 @@ export class PlayerJumpingActiveState
      * @param scene: The scene to detect conditions that change state
      * @returns {null}
      */
-    update(scene: Scene) {
+    update(scene: GameScene) {
         let state = null;
 
         // Update the jumping state to idle once the player is back on the ground

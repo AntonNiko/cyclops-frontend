@@ -1,5 +1,5 @@
 import { Player } from "./Player";
-import { Scene } from "phaser";
+import { GameScene } from "../scenes/Game";
 import { player_movement_states } from "./PlayerMovementStates";
 import { player_jumping_states } from "./PlayerJumpingStates";
 
@@ -16,7 +16,7 @@ export class PlayerCurrent extends Player
      * @param pos_y: The Y coordinate at which the player should be rendered at
      * @param color: The player's color, used to add the correct sprites
      */
-    constructor(scene: Scene, sid: any, pos_x: integer, pos_y: integer, color: any) {
+    constructor(scene: GameScene, sid: any, pos_x: integer, pos_y: integer, color: any) {
         super(scene, sid, pos_x, pos_y, color);
 
         this.scene.physics.world.setBoundsCollision(true,true,false,false);

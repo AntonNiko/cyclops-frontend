@@ -1,4 +1,5 @@
 import { Scene } from "phaser";
+import { GameScene } from "../scenes/Game";
 
 export const player_movement_states = {
     IDLE: 'idle',
@@ -32,7 +33,7 @@ export class PlayerMovementIdleState
      * @param pos_y: The player's current Y coordinate position
      * @param color: The player's sprite color which determines the sprite to be called for animation
      */
-    constructor(player_data: any, scene: Scene, direction='right', pos_x: integer, pos_y: integer, color: string) {
+    constructor(player_data: any, scene: GameScene, direction='right', pos_x: integer, pos_y: integer, color: string) {
         this.player_data = player_data;
         this.state_name = player_movement_states.IDLE;
         this.pos_x = pos_x;
@@ -56,12 +57,12 @@ export class PlayerMovementIdleState
      * @param scene: The scene to detect conditions that change state
      * @returns {null}
      */
-    update(scene: Scene) {
+    update(scene: GameScene) {
         let state = null;
 
-        if (scene.cursors.left.isDown || scene.keyA.isDown) {
+        if (scene.cursors?.left.isDown || scene.keyA?.isDown) {
             state = new PlayerMovementMovingLeftState(this.player_data, scene, -PLAYER_X_VELOCITY, this.player_data.x, this.player_data.y, this.color);
-        } else if (scene.cursors.right.isDown || scene.keyD.isDown) {
+        } else if (scene.cursors?.right.isDown || scene.keyD?.isDown) {
             state = new PlayerMovementMovingRightState(this.player_data, scene, PLAYER_X_VELOCITY, this.player_data.x, this.player_data.y, this.color);
         }
 
@@ -87,7 +88,7 @@ export class PlayerMovementMovingLeftState
      * @param pos_y: The player's current Y coordinate position
      * @param color: The player's sprite color which determines the sprite to be called for animation
      */
-    constructor(player_data: any, scene: Scene, velocity_x: any, pos_x: integer, pos_y: integer, color: string) {
+    constructor(player_data: any, scene: GameScene, velocity_x: any, pos_x: integer, pos_y: integer, color: string) {
         if (velocity_x > 0) {
             throw new Error("Velocity X value must be negative to reflect player moving left");
         }
@@ -114,12 +115,12 @@ export class PlayerMovementMovingLeftState
      * @param scene: The scene to detect conditions that change state
      * @returns {null}
      */
-    update(scene: Scene) {
+    update(scene: GameScene) {
         let state = null;
 
-        if(!(scene.cursors.left.isDown || scene.keyA.isDown) && !(scene.cursors.right.isDown || scene.keyD.isDown)) {
+        if(!(scene.cursors?.left.isDown || scene.keyA?.isDown) && !(scene.cursors?.right.isDown || scene.keyD?.isDown)) {
             state = new PlayerMovementIdleState(this.player_data, scene, 'left', this.player_data.x, this.player_data.y, this.color);
-        } else if (scene.cursors.right.isDown || scene.keyD.isDown){
+        } else if (scene.cursors?.right.isDown || scene.keyD?.isDown){
             state = new PlayerMovementMovingRightState(this.player_data, scene, PLAYER_X_VELOCITY, this.player_data.x, this.player_data.y, this.color);
         }
 
@@ -171,12 +172,12 @@ export class PlayerMovementMovingRightState {
      * @param scene: The scene to detect conditions that change state
      * @returns {null}
      */
-    update(scene: Scene) {
+    update(scene: GameScene) {
         let state = null;
 
-        if(!(scene.cursors.left.isDown || scene.keyA.isDown) && !(scene.cursors.right.isDown || scene.keyD.isDown)) {
+        if(!(scene.cursors?.left.isDown || scene.keyA?.isDown) && !(scene.cursors?.right.isDown || scene.keyD?.isDown)) {
             state = new PlayerMovementIdleState(this.player_data, scene, 'right', this.player_data.x, this.player_data.y, this.color);
-        } else if (scene.cursors.left.isDown || scene.keyA.isDown){
+        } else if (scene.cursors?.left.isDown || scene.keyA?.isDown){
             state = new PlayerMovementMovingLeftState(this.player_data, scene, -PLAYER_X_VELOCITY, this.player_data.x, this.player_data.y, this.color);
         }
 

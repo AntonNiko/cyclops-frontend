@@ -41,20 +41,21 @@ const PLATFORMS = [
  * Represents the main scene of the game that the player interacts with during gameplay. The socket.io functionality
  * is defined here, along with objects and player characters.
  */
-export class Game extends Scene 
+export class GameScene extends Scene 
 {
     game_ended: boolean;
-    player: any;
+    player: PlayerCurrent;
     otherPlayers: any;
     plats: any;
     platform_manager: PlatformManager;
-    flag: any;
+    flag: Phaser.Types.Physics.Arcade.ImageWithStaticBody;
     cursors?: Phaser.Types.Input.Keyboard.CursorKeys;
     keyW?: Phaser.Input.Keyboard.Key;
     keyA?: Phaser.Input.Keyboard.Key;
     keyS?: Phaser.Input.Keyboard.Key;
     keyD?: Phaser.Input.Keyboard.Key;
     socket: Socket;
+    platforms: any;
 
     constructor() {
         super({
@@ -142,7 +143,7 @@ export class Game extends Scene
     }
 
     create() {
-        this.player = null;
+        //this.player = null;
         this.otherPlayers = {};
         this.plats = [];
 

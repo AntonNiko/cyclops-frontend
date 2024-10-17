@@ -1,8 +1,8 @@
-import { Scene } from "phaser";
+import { GameScene } from "../scenes/Game";
 
 export class NaturalPlatformFactory 
 {
-    scene: Scene;
+    scene: GameScene;
     onCollide: boolean;
 
     /**
@@ -12,7 +12,7 @@ export class NaturalPlatformFactory
      * @param platform_data: The type and coordinate of a natural platform used to render on the scene
      * @returns {*}: If rendered successfully, returns the sprite objects of the newly created platform.
      */
-    constructor(scene: Scene, platform_data: any) {
+    constructor(scene: GameScene, platform_data: any) {
         let left_x = platform_data['left_x'];
         let right_x = platform_data['right_x'];
         let y = platform_data['y'];
@@ -45,7 +45,7 @@ export class NaturalPlatformFactory
      * @param pos_x: The X coordinate at which the boost platform should be created at.
      * @param pos_y: The Y coordinate at which the boost platform should be created at.
      */
-    createLeftPlatform(scene: Scene, pos_x: integer, pos_y: integer) {
+    createLeftPlatform(scene: GameScene, pos_x: integer, pos_y: integer) {
         scene.platforms.create(pos_x, pos_y, 'ground-left').setScale(2).setData({'type': 'natural'});
     }
 
@@ -56,7 +56,7 @@ export class NaturalPlatformFactory
      * @param pos_x: The X coordinate at which the boost platform should be created at.
      * @param pos_y: The Y coordinate at which the boost platform should be created at.
      */
-    createCenterPlatform(scene: Scene, pos_x: integer, pos_y: integer) {
+    createCenterPlatform(scene: GameScene, pos_x: integer, pos_y: integer) {
         scene.platforms.create(pos_x, pos_y, 'ground-center').setScale(2).setData({'type': 'natural'});
     }
 
@@ -67,7 +67,7 @@ export class NaturalPlatformFactory
      * @param pos_x: The X coordinate at which the boost platform should be created at.
      * @param pos_y: The Y coordinate at which the boost platform should be created at.
      */
-    createRightPlatform(scene: Scene, pos_x: integer, pos_y: integer) {
+    createRightPlatform(scene: GameScene, pos_x: integer, pos_y: integer) {
         scene.platforms.create(pos_x, pos_y, 'ground-right').setScale(2).setData({'type': 'natural'});
     }
 }

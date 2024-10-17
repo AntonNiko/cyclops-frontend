@@ -1,9 +1,10 @@
 import { Scene } from 'phaser';
+import { Socket } from 'socket.io-client';
 
 export class EndScene extends Scene 
 {
     winning_player: string;
-    socket: any;
+    socket: Socket;
 
     constructor() {
         super('EndScene');
